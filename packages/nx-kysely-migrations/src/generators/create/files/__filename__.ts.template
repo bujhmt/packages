@@ -1,0 +1,11 @@
+import { Kysely } from 'kysely';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function up(db: Kysely<any>): Promise<void> {
+    // How to add
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function down(db: Kysely<any>): Promise<void> {
+    // How to revert
+}
