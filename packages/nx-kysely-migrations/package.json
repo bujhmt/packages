@@ -1,0 +1,86 @@
+{
+    "name": "@bujhmt/nx-kysely-migrations",
+    "version": "1.0.0",
+    "description": "Nx generator for scaffolding Kysely migration files.",
+    "license": "MIT",
+    "author": "bujhmt",
+    "keywords": [
+        "nx",
+        "nx-plugin",
+        "kysely",
+        "migration",
+        "migrations",
+        "generator"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bujhmt/packages.git",
+        "directory": "packages/nx-kysely-migrations"
+    },
+    "homepage": "https://github.com/bujhmt/packages/tree/main/packages/nx-kysely-migrations#readme",
+    "bugs": {
+        "url": "https://github.com/bujhmt/packages/issues"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@bujhmt/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "scripts": {
+        "build": "nx build nx-kysely-migrations",
+        "prepublishOnly": "npm run build",
+        "publish:npm": "npm publish"
+    },
+    "nx": {
+        "targets": {
+            "build": {
+                "executor": "@nx/js:tsc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "packages/nx-kysely-migrations/dist",
+                    "main": "packages/nx-kysely-migrations/src/index.ts",
+                    "tsConfig": "packages/nx-kysely-migrations/tsconfig.lib.json",
+                    "rootDir": "packages/nx-kysely-migrations/src",
+                    "generatePackageJson": false,
+                    "assets": [
+                        {
+                            "input": "./packages/nx-kysely-migrations/src",
+                            "glob": "**/!(*.ts)",
+                            "output": "."
+                        },
+                        {
+                            "input": "./packages/nx-kysely-migrations/src",
+                            "glob": "**/*.d.ts",
+                            "output": "."
+                        }
+                    ]
+                }
+            }
+        },
+        "tags": [
+            "scope:public"
+        ]
+    },
+    "dependencies": {
+        "@nx/devkit": "22.7.3",
+        "tslib": "^2.3.0"
+    },
+    "generators": "./generators.json",
+    "files": [
+        "dist",
+        "!**/*.tsbuildinfo",
+        "generators.json"
+    ]
+}
